@@ -1,6 +1,7 @@
 package ar.net.edufmass.springrecipeapp.controllers;
 
 import ar.net.edufmass.springrecipeapp.commands.RecipeCommand;
+import ar.net.edufmass.springrecipeapp.domain.Recipe;
 import ar.net.edufmass.springrecipeapp.services.RecipeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +16,7 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
-    @RequestMapping("/recipe/show/{id}")
+    @RequestMapping("/recipe/{id}/show")
     public String showById(@PathVariable String id, Model model){
         model.addAttribute("recipe", recipeService.findById(Long.valueOf(id)));
         return "recipe/show";
@@ -28,12 +29,18 @@ public class RecipeController {
         return "recipe/recipeForm";
     }
 
+    @RequestMapping("/recipe/{id}/update")
+    public String updateRecipe(@PathVariable String id, Model model) {
+        Recipe oneRecipe = recipeService.findById(Long.valueOf(id));
+        model.addAttribute("recipe", oneRecipe);
+        return "recipe/recipeForm";
+    }
+
     @PostMapping("/recipe")
-    public String saveOrUpdate(@ModelAttribute RecipeCommand command){
+    public String saveOrUpdate(@ModelAttribute RecipeCommand command) {
         RecipeCommand savedCommand = recipeService.saveRecipeCommand(command);
 
-        return "redirect:/recipe/show/" + savedCommand.getId();
-        //return "redirect:/recipe/show/1";
+        return "redirect:/recipe/" + savedCommand.getId() + "/show";
     }
 
 }

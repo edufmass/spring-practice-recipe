@@ -2,7 +2,7 @@ package ar.net.edufmass.springrecipeapp.converters;
 
 import ar.net.edufmass.springrecipeapp.commands.CategoryCommand;
 import ar.net.edufmass.springrecipeapp.commands.IngredientCommand;
-import ar.net.edufmass.springrecipeapp.commands.NoteCommand;
+import ar.net.edufmass.springrecipeapp.commands.NotesCommand;
 import ar.net.edufmass.springrecipeapp.commands.RecipeCommand;
 import ar.net.edufmass.springrecipeapp.domain.Difficulty;
 import ar.net.edufmass.springrecipeapp.domain.Recipe;
@@ -35,7 +35,7 @@ class RecipeCommandToRecipeTest {
     public void setUp() throws Exception {
         recipeCommandToRecipe = new RecipeCommandToRecipe(new CategoryCommandToCategory(),
                 new IngredientCommandToIngredient(new UnitOfMeasureCommandToUnitOfMeasure()),
-                new NoteCommandToNote());
+                new NotesCommandToNotes());
     }
 
     @Test
@@ -62,10 +62,10 @@ class RecipeCommandToRecipeTest {
         recipeCommand.setSource(source);
         recipeCommand.setUrl(url);
 
-        NoteCommand note = new NoteCommand();
-        note.setId(note_id);
+        NotesCommand notes = new NotesCommand();
+        notes.setId(note_id);
 
-        recipeCommand.setNote(note);
+        recipeCommand.setNotes(notes);
 
         CategoryCommand category = new CategoryCommand();
         category.setId(category_id_1);
@@ -98,7 +98,7 @@ class RecipeCommandToRecipeTest {
         assertEquals(servings, recipe.getServings());
         assertEquals(source, recipe.getSource());
         assertEquals(url, recipe.getUrl());
-        assertEquals(note_id, recipe.getNote().getId());
+        assertEquals(note_id, recipe.getNotes().getId());
         assertEquals(2, recipe.getCategories().size());
         assertEquals(2, recipe.getIngredients().size());
     }

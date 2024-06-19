@@ -8,8 +8,7 @@ import lombok.Setter;
 import java.util.HashSet;
 import java.util.Set;
 
-@Getter
-@Setter
+@Data
 @Entity
 public class Recipe {
 
@@ -37,7 +36,7 @@ public class Recipe {
     private Byte[] image;
 
     @OneToOne(cascade = CascadeType.ALL)
-    private Note note;
+    private Notes notes;
 
     @ManyToMany
     @JoinTable(name = "recipe_category",
@@ -51,10 +50,10 @@ public class Recipe {
         return this;
     }
 
-    public void setNote(Note note) {
-        if (note != null) {
-            this.note = note;
-            note.setRecipe(this);
+    public void setNotes(Notes notes) {
+        if (notes != null) {
+            this.notes = notes;
+            notes.setRecipe(this);
         }
     }
 }

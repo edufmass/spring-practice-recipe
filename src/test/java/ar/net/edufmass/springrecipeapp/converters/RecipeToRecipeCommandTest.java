@@ -22,7 +22,7 @@ class RecipeToRecipeCommandTest {
     final Long category_id_2 = 2L;
     final Long ingredient_id_1 = 3L;
     final Long ingredient_id_2 = 4L;
-    final Long note_id = 9L;
+    final Long notes_id = 9L;
 
     RecipeToRecipeCommand recipeToRecipeCommand;
 
@@ -31,7 +31,7 @@ class RecipeToRecipeCommandTest {
         recipeToRecipeCommand = new RecipeToRecipeCommand(
                 new CategoryToCategoryCommand(),
                 new IngredientToIngredientCommand(new UnitOfMeasureToUnitOfMeasureCommand()),
-                new NoteToNoteCommand());
+                new NotesToNotesCommand());
     }
 
     @Test
@@ -58,10 +58,10 @@ class RecipeToRecipeCommandTest {
         recipe.setSource(source);
         recipe.setUrl(url);
 
-        Note note = new Note();
-        note.setId(note_id);
+        Notes notes = new Notes();
+        notes.setId(notes_id);
 
-        recipe.setNote(note);
+        recipe.setNotes(notes);
 
         Category category = new Category();
         category.setId(category_id_1);
@@ -95,7 +95,7 @@ class RecipeToRecipeCommandTest {
         assertEquals(servings, command.getServings());
         assertEquals(source, command.getSource());
         assertEquals(url, command.getUrl());
-        assertEquals(note_id, command.getNote().getId());
+        assertEquals(notes_id, command.getNotes().getId());
         assertEquals(2, command.getCategories().size());
         assertEquals(2, command.getIngredients().size());
 

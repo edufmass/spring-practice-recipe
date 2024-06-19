@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(exclude = {"recipe"})
 @Entity
-public class Note {
+public class Notes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +17,6 @@ public class Note {
     private Recipe recipe;
 
     @Lob
-    private String recipeNote;
+    private String recipeNotes;
 
 }
