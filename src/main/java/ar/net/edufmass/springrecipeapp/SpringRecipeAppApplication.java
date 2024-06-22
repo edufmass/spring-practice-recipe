@@ -10,8 +10,8 @@ public class SpringRecipeAppApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringRecipeAppApplication.class, args);
-		System.out.println("version: " + SpringVersion.getVersion());
-		System.out.println("spring boot version: " + SpringBootVersion.getVersion());
+		//System.out.println("version: " + SpringVersion.getVersion());
+		//System.out.println("spring boot version: " + SpringBootVersion.getVersion());
 	}
 
 }
