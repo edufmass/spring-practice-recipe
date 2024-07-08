@@ -50,8 +50,14 @@
                             </div>
                             <div class="col-md-6">
                                 <img src="../../static/images/guacamole400x400WithX.jpg"
-                                     th:src="@{/images/guacamole400x400WithX.jpg}"
+                                     th:src="@{'/recipe/' + ${recipe.id} + '/recipeimage'}"
+                                     th:if="${recipe.getImage() != null}"
                                      width="200" height="200">
+                                <img src="../../static/images/guacamole400x400WithX.jpg"
+                                     th:src="@{/images/guacamole400x400WithX.jpg}"
+                                     th:if="${recipe.getImage() == null}"
+                                     width="200" height="200">
+
                             </div>
                         </div>
                         <div class="row">
